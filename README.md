@@ -1,28 +1,29 @@
 # HR Workforce Distribution & Salary Structure Analysis
 
-# Project Overview
+## Project Overview
 Analyzed Swift HR Office's data across 25 countries and 23 cities to evaluate workforce distribution, hiring patterns, and salary cost structures.
 
 The project delivers insights to support strategic workforce planning, cost optimization, and organizational efficiency.
 
-# Business Problem
+## Business Problem
 Leadership lacked visibility into:
 
 - Workforce concentration across regions and departments
 - Salary cost drivers
 - Organizational inefficiencies (e.g., unmanaged departments, uneven staffing)
 
-# Data Overview
+## Data Overview
 - 107 employees, 27 departments, 19 job roles
 - Coverage across 23 cities / 25 countries / 4 regions
 - Key data points: employee records, salaries, departments, locations, and job roles
 
-# Tools & Technologies
+## Tools & Technologies
 - MySQL
 - SQL (joins, aggregations, filtering, CASE logic)
 
 # SQL Highlights
-1. Region with Highest Salary Cost
+```sql
+// Region with Highest Salary Cost
 
 select
 	R.region_id,
@@ -36,8 +37,9 @@ from regions R
 group by 1,2
 order by 3 desc
 limit 1;
-
-2. Department Workforce Distribution
+```
+```sql
+// Department Workforce Distribution
 
 select
 	D.department_id,
@@ -47,14 +49,16 @@ from departments as D
 	inner join employees using(department_id)
 group by 1,2
 order by 3 desc;
-
-3. Percentage of Employees on Commission
+```
+```sql
+// Percentage of Employees on Commission
 
 select
     round((sum(case when commission_pct is not null then 1 else 0 end) / COUNT(*)) * 100, 2) as commission_percentage
 from employees;
+```
 
-# Key Insights
+## Key Insights
 - Workforce concentration is uneven:
   - Shipping (45 employees) and Sales dominate staffing
   - Some departments have minimal or no staffing
@@ -70,7 +74,7 @@ from employees;
 - Compensation structure insights:
   - 35 employees earn commission, indicating a strong performance-based component
  
-# Recommendations
+## Recommendations
 - Address organizational gaps:
   - Assign managers to all departments
   - Ensure all employees are mapped to functional units
@@ -85,8 +89,7 @@ from employees;
   - Evaluate effectiveness of commission-based roles on performance outcomes
  
 # Outcome
-
-Provided a clear view of workforce distribution, structural gaps, and cost concentration, enabling leadership to make data-driven HR and operational decisions.
+✅ Provided a clear view of workforce distribution, structural gaps, and cost concentration, enabling leadership to make data-driven HR and operational decisions.
 
 # Next Steps
 - Build workforce dashboards (Power BI/Tableau)
